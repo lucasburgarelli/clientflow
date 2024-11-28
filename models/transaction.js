@@ -1,6 +1,6 @@
 const { DataTypes, Op } = require("sequelize");
 const sequelize = require("../helpers/connection");
-const ProductModel = require("../models/product");
+const { ProductModel } = require("../models/product");
 
 const TransactionModel = sequelize.define("Transaction", {
   tra_code: {
@@ -14,6 +14,12 @@ const TransactionModel = sequelize.define("Transaction", {
         msg: "code must have 11 characters",
       },
     },
+    references: {
+      model: ProductModel,
+      key: "pro_code",
+    },
+    onUpdate: "CASCADE",
+    onDelete: "CASCADE",
   },
   tra_quantity: {
     type: DataTypes.INTEGER,
@@ -51,6 +57,8 @@ const TransactionModel = sequelize.define("Transaction", {
     },
   }
 });
+
+
 
 
 module.exports = {

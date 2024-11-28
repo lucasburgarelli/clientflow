@@ -128,5 +128,5 @@ module.exports = {
     });
     return Product;
   },
-  ProductModel,
+  ProductModel
 };
