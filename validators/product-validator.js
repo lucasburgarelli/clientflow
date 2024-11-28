@@ -1,120 +1,78 @@
 const Joi = require('joi');
 
 
-exports.productSchema = Joi.object({
-  code: Joi.string()
+exports.productValidator = Joi.object({
+  pro_code: Joi.string()
     .length(11)
     .required()
     .messages({
-      "string.base": "code must be a string",
-      "string.length": "code must have exactly 11 characters",
-      "any.required": "code is required",
+      'string.length': 'O código deve ter exatamente 11 caracteres.',
+      'any.required': 'O código é obrigatório.',
     }),
-
-  description: Joi.string()
-    .min(1)
+  
+  pro_description: Joi.string()
     .required()
     .messages({
-      "string.base": "description must be a string",
-      "string.empty": "description cannot be empty",
-      "any.required": "description is required",
+      'any.required': 'A descrição é obrigatória.',
     }),
-
-  category: Joi.string()
-    .valid("P", "M", "G")
+  
+  pro_category: Joi.string()
+    .valid('P', 'M', 'G')
     .required()
     .messages({
-      "any.only": "category must be one of 'P', 'M', 'G'",
-      "any.required": "category is required",
+      'any.only': 'A categoria deve ser P, M ou G.',
+      'any.required': 'A categoria é obrigatória.',
     }),
-
-  price: Joi.number()
+  
+  pro_price: Joi.number()
+    .precision(2)
     .positive()
     .required()
     .messages({
-      "number.base": "price must be a number",
-      "number.positive": "price must be a positive number",
-      "any.required": "price is required",
+      'number.base': 'O preço deve ser um número.',
+      'number.positive': 'O preço deve ser positivo.',
+      'any.required': 'O preço é obrigatório.',
     }),
-
-  supplier: Joi.string()
-    .min(5)
+  
+  pro_supplier: Joi.string()
+    .min(1)
     .max(255)
     .required()
     .messages({
-      "string.base": "supplier must be a string",
-      "string.min": "supplier must have at least 5 characters",
-      "string.max": "supplier must have at most 255 characters",
-      "any.required": "supplier is required",
+      'string.max': 'O fornecedor deve ter no máximo 255 caracteres.',
+      'any.required': 'O fornecedor é obrigatório.',
     }),
-
-  barcode: Joi.string()
-    .min(5)
+  
+  pro_barcode: Joi.string()
+    .min(1)
     .max(25)
     .required()
     .messages({
-      "string.base": "barcode must be a string",
-      "string.min": "barcode must have at least 5 characters",
-      "string.max": "barcode must have at most 25 characters",
-      "any.required": "barcode is required",
+      'string.max': 'O código de barras deve ter no máximo 25 caracteres.',
+      'any.required': 'O código de barras é obrigatório.',
     }),
-
-  quantity: Joi.number()
-    .integer()
-    .min(0)
-    .required()
-    .messages({
-      "number.base": "quantity must be a number",
-      "number.integer": "quantity must be an integer",
-      "number.min": "quantity cannot be negative",
-      "any.required": "quantity is required",
-    }),
-
-  location: Joi.string()
+  
+  pro_location: Joi.string()
     .min(5)
     .max(255)
     .required()
     .messages({
-      "string.base": "location must be a string",
-      "string.min": "location must have at least 5 characters",
-      "string.max": "location must have at most 255 characters",
-      "any.required": "location is required",
+      'string.min': 'A localização deve ter no mínimo 5 caracteres.',
+      'any.required': 'A localização é obrigatória.',
     }),
-
-  size: Joi.string()
-    .valid("P", "M", "G")
+  
+  pro_contact: Joi.string()
     .required()
     .messages({
-      "any.only": "size must be one of 'P', 'M', 'G'",
-      "any.required": "size is required",
+      'any.required': 'O contato é obrigatório.',
     }),
-
-  contact: Joi.string()
+  
+  pro_conditions: Joi.string()
     .min(1)
+    .max(255)
     .required()
     .messages({
-      "string.base": "contact must be a string",
-      "string.empty": "contact cannot be empty",
-      "any.required": "contact is required",
+      'string.max': 'As condições devem ter no máximo 255 caracteres.',
+      'any.required': 'As condições são obrigatórias.',
     }),
-
-  date: Joi.date()
-    .iso()
-    .required()
-    .messages({
-      "date.base": "date must be a valid date",
-      "date.format": "date must be in ISO format (YYYY-MM-DD)",
-      "any.required": "date is required",
-    }),
-});
-
-exports.codeSchema = Joi.object({
-  code: Joi.string()
-    .length(11)
-    .required()
-    .messages({
-      "string.base": "code must be a string",
-      "string.length": "code must have exactly 11 characters",
-      "any.required": "code is required",
-    })
 });

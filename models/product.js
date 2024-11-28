@@ -43,7 +43,7 @@ const ProductModel = sequelize.define("Product", {
     validate: {
       notNull: true,
       len: {
-        args: [5, 255],
+        args: [1, 255],
         msg: "",
       },
     },
@@ -54,16 +54,9 @@ const ProductModel = sequelize.define("Product", {
     validate: {
       notNull: true,
       len: {
-        args: [5, 25],
+        args: [1, 25],
         msg: "",
       },
-    },
-  },
-  pro_quantity: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    validate: {
-      notNull: true,
     },
   },
   pro_location: {
@@ -77,14 +70,6 @@ const ProductModel = sequelize.define("Product", {
       },
     },
   },
-  pro_size: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-      notNull: true,
-      isIn: [["P", "M", "G"]],
-    },
-  },
   pro_contact: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -92,12 +77,15 @@ const ProductModel = sequelize.define("Product", {
       notNull: true,
     },
   },
-  pro_date: {
-    type: DataTypes.DATEONLY,
+  pro_conditions: {
+    type: DataTypes.STRING,
     allowNull: false,
     validate: {
       notNull: true,
-      isDate: true,
+      len: {
+        args: [1, 255],
+        msg: "",
+      },
     },
   },
 });

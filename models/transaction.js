@@ -53,7 +53,6 @@ const TransactionModel = sequelize.define("Transaction", {
 });
 
 
-
 module.exports = {
   create: async function (transaction) {
     const TransactionNew = await TransactionModel.create(transaction);

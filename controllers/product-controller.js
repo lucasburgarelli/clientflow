@@ -14,11 +14,9 @@ exports.post = async (req, res, next) => {
       pro_price: req.query.price,
       pro_supplier: req.query.supplier,
       pro_barcode: req.query.barcode,
-      pro_quantity: req.query.quantity,
       pro_location: req.query.location,
-      pro_size: req.query.size,
       pro_contact: req.query.contact,
-      pro_date: req.query.date
+      pro_conditions: req.query.date
     });
     res.status(201).json(sucess(product));
   } catch (err) {
@@ -66,17 +64,15 @@ exports.put = async (req, res, next) => {
     await validator.codeSchema.validateAsync(req.params);
     await validator.productSchema.validateAsync(req.query);
     let product = await ProductModel.update(req.query.code, {
-        pro_code: req.query.code,
-        pro_description: req.query.description,
-        pro_category: req.query.category,
-        pro_price: req.query.price,
-        pro_supplier: req.query.supplier,
-        pro_barcode: req.query.barcode,
-        pro_quantity: req.query.quantity,
-        pro_location: req.query.location,
-        pro_size: req.query.size,
-        pro_contact: req.query.contact,
-        pro_date: req.query.date
+      pro_code: req.query.code,
+      pro_description: req.query.description,
+      pro_category: req.query.category,
+      pro_price: req.query.price,
+      pro_supplier: req.query.supplier,
+      pro_barcode: req.query.barcode,
+      pro_location: req.query.location,
+      pro_contact: req.query.contact,
+      pro_conditions: req.query.date
     });
     if (!product) res.status(404).json(fail(product));
     else res.status(200).json(sucess(product));
