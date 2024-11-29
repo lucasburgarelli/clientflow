@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 
-exports.productValidator = Joi.object({
+exports.productSchema = Joi.object({
   code: Joi.string()
     .length(11)
     .required()
