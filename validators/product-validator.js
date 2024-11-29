@@ -2,7 +2,7 @@ const Joi = require('joi');
 
 
 exports.productValidator = Joi.object({
-  pro_code: Joi.string()
+  code: Joi.string()
     .length(11)
     .required()
     .messages({
@@ -10,13 +10,13 @@ exports.productValidator = Joi.object({
       'any.required': 'O código é obrigatório.',
     }),
   
-  pro_description: Joi.string()
+  description: Joi.string()
     .required()
     .messages({
       'any.required': 'A descrição é obrigatória.',
     }),
   
-  pro_category: Joi.string()
+  category: Joi.string()
     .valid('P', 'M', 'G')
     .required()
     .messages({
@@ -24,7 +24,7 @@ exports.productValidator = Joi.object({
       'any.required': 'A categoria é obrigatória.',
     }),
   
-  pro_price: Joi.number()
+  price: Joi.number()
     .precision(2)
     .positive()
     .required()
@@ -34,7 +34,7 @@ exports.productValidator = Joi.object({
       'any.required': 'O preço é obrigatório.',
     }),
   
-  pro_supplier: Joi.string()
+  supplier: Joi.string()
     .min(1)
     .max(255)
     .required()
@@ -43,7 +43,7 @@ exports.productValidator = Joi.object({
       'any.required': 'O fornecedor é obrigatório.',
     }),
   
-  pro_barcode: Joi.string()
+  barcode: Joi.string()
     .min(1)
     .max(25)
     .required()
@@ -52,7 +52,7 @@ exports.productValidator = Joi.object({
       'any.required': 'O código de barras é obrigatório.',
     }),
   
-  pro_location: Joi.string()
+  location: Joi.string()
     .min(5)
     .max(255)
     .required()
@@ -61,13 +61,13 @@ exports.productValidator = Joi.object({
       'any.required': 'A localização é obrigatória.',
     }),
   
-  pro_contact: Joi.string()
+  contact: Joi.string()
     .required()
     .messages({
       'any.required': 'O contato é obrigatório.',
     }),
   
-  pro_conditions: Joi.string()
+  conditions: Joi.string()
     .min(1)
     .max(255)
     .required()

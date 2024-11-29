@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 exports.transactionSchema = Joi.object({
-    tra_code: Joi.string()
+    code: Joi.string()
       .length(11)
       .required()
       .messages({
@@ -9,7 +9,7 @@ exports.transactionSchema = Joi.object({
         "any.required": "Code is required.",
       }),
     
-    tra_quantity: Joi.number()
+    quantity: Joi.number()
       .integer()
       .required()
       .messages({
@@ -17,7 +17,7 @@ exports.transactionSchema = Joi.object({
         "any.required": "Quantity is required.",
       }),
     
-    tra_type: Joi.string()
+    type: Joi.string()
       .valid("E", "S")
       .required()
       .messages({
@@ -25,7 +25,7 @@ exports.transactionSchema = Joi.object({
         "any.required": "Type is required.",
       }),
     
-    tra_date: Joi.date()
+    date: Joi.date()
       .iso()
       .required()
       .messages({
@@ -34,7 +34,7 @@ exports.transactionSchema = Joi.object({
         "any.required": "Date is required.",
       }),
   
-    tra_time: Joi.string()
+    time: Joi.string()
       .pattern(/^(?:[01]\d|2[0-3]):[0-5]\d(:[0-5]\d)?$/)
       .required()
       .messages({

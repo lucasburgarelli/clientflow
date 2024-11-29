@@ -16,7 +16,7 @@ exports.post = async (req, res, next) => {
       pro_barcode: req.query.barcode,
       pro_location: req.query.location,
       pro_contact: req.query.contact,
-      pro_conditions: req.query.date
+      pro_conditions: req.query.conditions
     });
     res.status(201).json(sucess(product));
   } catch (err) {
@@ -72,7 +72,7 @@ exports.put = async (req, res, next) => {
       pro_barcode: req.query.barcode,
       pro_location: req.query.location,
       pro_contact: req.query.contact,
-      pro_conditions: req.query.date
+      pro_conditions: req.query.conditions
     });
     if (!product) res.status(404).json(fail(product));
     else res.status(200).json(sucess(product));
