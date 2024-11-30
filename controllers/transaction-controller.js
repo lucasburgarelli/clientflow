@@ -29,6 +29,16 @@ exports.get = async (req, res, next) => {
   }
 };
 
+exports.getWithNames = async (req, res, next) => {
+  try {
+    let transactions = await TransactionModel.readWithName();
+    if (!transactions) res.status(404).json(fail(transactions));
+    else res.status(200).json(sucess(transactions));
+  } catch (err) {
+    res.status(400).json(fail(err.message.split(",\n")));
+  }
+};
+
 exports.getPagination = async (req, res, next) => {
   try {
     await pagValidator.paginationSchema.validateAsync(req.query);

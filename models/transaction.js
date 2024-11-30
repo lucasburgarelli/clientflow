@@ -59,7 +59,15 @@ const TransactionModel = sequelize.define("Transaction", {
   },
 });
 
+ProductModel.hasMany(TransactionModel, {
+  foreignKey: 'tra_code',
+  as: 'transactions',
+});
 
+TransactionModel.belongsTo(ProductModel, {
+  foreignKey: 'tra_code',
+  as: 'product',
+});
 
 module.exports = {
   create: async function (transaction) {
@@ -68,6 +76,25 @@ module.exports = {
   },
   read: async function () {
     return TransactionModel.findAll();
+  },
+  readWithName: async function () {
+    const transactions = await TransactionModel.findAll({
+      attributes: ['tra_quantity', 'tra_type', 'tra_date'],
+      include: [
+        {
+          model: ProductModel,
+          required: true,
+          as: 'product',
+        },
+      ],
+    });
+
+    return transactions.map(transaction => ({
+      productName: transaction.product.pro_description,
+      quantity: transaction.tra_quantity,
+      type: transaction.tra_type,
+      date: transaction.tra_date,
+    }));
   },
   readPagination: async function (limit, offset) {
     return await TransactionModel.findAndCountAll({
