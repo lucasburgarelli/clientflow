@@ -3,9 +3,21 @@ const sequelize = require("../helpers/connection");
 const { ProductModel } = require("../models/product");
 
 const TransactionModel = sequelize.define("Transaction", {
+  tra_procode: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    allowNull: false,
+    autoIncrement: true,
+    validate: {
+      notNull: true,
+      len: {
+        args: [11, 11],
+        msg: "code must have 11 characters",
+      },
+    },
+  },
   tra_code: {
     type: DataTypes.STRING,
-    primaryKey: true,
     allowNull: false,
     validate: {
       notNull: true,
@@ -23,7 +35,6 @@ const TransactionModel = sequelize.define("Transaction", {
   },
   tra_quantity: {
     type: DataTypes.INTEGER,
-    primaryKey: true,
     allowNull: false,
     validate: {
       notNull: true,
@@ -31,7 +42,6 @@ const TransactionModel = sequelize.define("Transaction", {
   },
   tra_type: {
     type: DataTypes.STRING,
-    primaryKey: true,
     allowNull: false,
     validate: {
       notNull: true,
@@ -47,17 +57,7 @@ const TransactionModel = sequelize.define("Transaction", {
       isDate: true,
     },
   },
-  tra_time: {
-    type: DataTypes.TIME,
-    primaryKey: true,
-    allowNull: false,
-    validate: {
-      notNull: true,
-      isTime: true,
-    },
-  }
 });
-
 
 
 
@@ -81,8 +81,7 @@ module.exports = {
         tra_code: transaction.code,
         tra_quantity: transaction.quantity,
         tra_type: transaction.type,
-        tra_date: transaction.date,
-        tra_time: transaction.time,
+        tra_date: transaction.date
       },
     });
     return TransactionDelete;
@@ -93,8 +92,7 @@ module.exports = {
         tra_code: transaction.code,
         tra_quantity: transaction.quantity,
         tra_type: transaction.type,
-        tra_date: transaction.date,
-        tra_time: transaction.time,
+        tra_date: transaction.date
       },
     });
     return Transaction;

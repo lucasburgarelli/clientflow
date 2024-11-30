@@ -33,12 +33,4 @@ exports.transactionSchema = Joi.object({
         "date.format": "Date must be in ISO format (YYYY-MM-DD).",
         "any.required": "Date is required.",
       }),
-  
-    time: Joi.string()
-      .pattern(/^(?:[01]\d|2[0-3]):[0-5]\d(:[0-5]\d)?$/)
-      .required()
-      .messages({
-        "string.pattern.base": "Time must be in HH:MM or HH:MM:SS format.",
-        "any.required": "Time is required.",
-      }),
   });

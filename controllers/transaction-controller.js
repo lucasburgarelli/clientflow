@@ -11,8 +11,7 @@ exports.post = async (req, res, next) => {
       tra_code: req.query.code,
       tra_quantity: req.query.quantity,
       tra_type: req.query.type,
-      tra_date: req.query.date,
-      tra_time: req.query.time
+      tra_date: req.query.date
     });
     res.status(201).json(sucess(transaction));
   } catch (err) {
